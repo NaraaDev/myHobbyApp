@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {MainNavParamList} from './types/MainNavParamList';
-import FlipPage from '@/screens/FlipPage';
+import FlipPage from '@/screens/FlipPage/FlipPage';
 
 const Stack = createNativeStackNavigator<MainNavParamList>();
 

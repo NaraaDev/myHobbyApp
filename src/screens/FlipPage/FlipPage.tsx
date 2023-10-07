@@ -45,25 +45,27 @@ function FlipPage({front, back, onChange, bottom}: FlipPageProps) {
     });
 
   const rBackStyle = useAnimatedStyle(() => {
+    const rotateX = bottom
+      ? interpolate(
+          pageRotateX.value,
+          [-height, 0],
+          [180, 0],
+          Extrapolate.CLAMP,
+        )
+      : interpolate(
+          pageRotateX.value,
+          [0, height],
+          [0, -180],
+          Extrapolate.CLAMP,
+        );
+
     return {
       transform: [
         {perspective: -1000},
         {rotateY: '180deg'},
         {translateY: (coef * height) / 4},
         {
-          rotateX: bottom
-            ? `${interpolate(
-                pageRotateX.value,
-                [-height, 0],
-                [180, 0],
-                Extrapolate.CLAMP,
-              )}deg`
-            : `${interpolate(
-                pageRotateX.value,
-                [0, height],
-                [0, -180],
-                Extrapolate.CLAMP,
-              )}deg`,
+          rotateX: `${rotateX}deg`,
         },
         {translateY: (coef * -height) / 4},
         {rotateZ: '180deg'},
@@ -72,24 +74,25 @@ function FlipPage({front, back, onChange, bottom}: FlipPageProps) {
   });
 
   const rFrontStyle = useAnimatedStyle(() => {
+    const rotateX = bottom
+      ? interpolate(
+          pageRotateX.value,
+          [-height, 0],
+          [180, 0],
+          Extrapolate.CLAMP,
+        )
+      : interpolate(
+          pageRotateX.value,
+          [0, height],
+          [0, -180],
+          Extrapolate.CLAMP,
+        );
     return {
       transform: [
         {perspective: 1000},
         {translateY: (coef * height) / 4},
         {
-          rotateX: bottom
-            ? `${interpolate(
-                pageRotateX.value,
-                [-height, 0],
-                [180, 0],
-                Extrapolate.CLAMP,
-              )}deg`
-            : `${interpolate(
-                pageRotateX.value,
-                [0, height],
-                [0, -180],
-                Extrapolate.CLAMP,
-              )}deg`,
+          rotateX: `${rotateX}deg`,
         },
         {translateY: (coef * -height) / 4},
       ],

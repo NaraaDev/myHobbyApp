@@ -1,18 +1,25 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import {createStackNavigator} from '@react-navigation/stack';
+
+import AllScreens from '@/screens/AllScreens';
+import NetflixCategory from '@/screens/netflix/NetflixCategory';
 
 import {MainNavParamList} from './types/MainNavParamList';
-import FlipPage from '@/screens/FlipPage/FlipPage';
 
-const Stack = createNativeStackNavigator<MainNavParamList>();
+const Stack = createStackNavigator<MainNavParamList>();
 
 export default function MainNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="FlipPage" component={FlipPage} />
+      <Stack.Navigator
+        screenOptions={{headerShown: false}}
+        initialRouteName="AllScreens">
+        <Stack.Screen name="AllScreens" component={AllScreens} />
+        {/* <Stack.Screen name="FlipPage" component={FlipPage} /> */}
+        <Stack.Screen name="NetflixCategory" component={NetflixCategory} />
       </Stack.Navigator>
     </NavigationContainer>
   );
